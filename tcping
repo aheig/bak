@@ -37,14 +37,14 @@ usage () {
 	echo
 	echo "Usage: $name [-d] [-c] [-C] [-w sec] [-q num] [-x count] ipaddress [port]"
 	echo
-	echo "        -d   print timestamp before every result"
-	echo "        -c   print a columned result line"
-	echo "        -C   print in the same format as fping's -C option"
-	echo "        -w   wait time in seconds (defaults to 3)"
-	echo "        -r   repeat every n seconds (defaults to 1)"
-	echo "        -x   repeat n times (defaults to unlimited)"
+	echo "        -d   在每个结果之前显示时间戳"
+	echo "        -c   显示列结果行"
+	echo "        -C   以与fping的-C选项相同的格式显示"
+	echo "        -w  等待时间（以秒为单位）（默认为3秒）"
+	echo "        -r   每n秒重复一次（默认为1秒）"
+	echo "        -x   重复n次（默认为无限制）"
 	echo
-	echo "See also: man tcptraceroute"
+	echo "更多帮助请参见：man tcptraceroute"
 	echo
 }
 
