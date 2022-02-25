@@ -16,9 +16,12 @@ systemctl restart nginx
 ```
 
 # Nssm 是一个创建服务命令
+
 示例：
-```
-nssm install [服务名]   #创建服务
-nssm start [服务名]   #启动服务
-nssm remove [服务名]   #删除服务
-```
+
+创建服务  `` nssm install [服务名]   ``
+
+启动服务  ``nssm start [服务名]   ``
+
+删除服务  ``nssm remove [服务名]   ``
+
