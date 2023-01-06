@@ -15,6 +15,10 @@ unzip web*.zip
 systemctl restart nginx
 ```
 
+# Download & Install Docker
+```
+wget https://raw.githubusercontent.com/aheig/bak/main/docker.sh && bash ./docker.sh
+```
 # Nssm 是一个创建服务命令
 
 示例：
