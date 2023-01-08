@@ -19,8 +19,12 @@ systemctl restart nginx
 ```
 # 官方
 curl -sSL https://get.docker.com/ | sh
+```
+```
 # 我的gitHub
 wget https://raw.githubusercontent.com/aheig/bak/main/docker.sh && bash ./docker.sh
+```
+```
 # 国内
 bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/DockerInstallation.sh)
 ```
