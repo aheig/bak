@@ -12,12 +12,12 @@ uci commit network
 #配置WIFI
 uci set wireless.radio0.disabled='1'
 uci set wireless.radio1.disabled='0'
-uci set wireless.@radio1.ssid='OVO'
-uci set wireless.default_radio1.encryption='psk2'
-uci set wireless.@radio1.key='WIFI8520.0'
+uci set wireless.radio1.ssid='OVO'
+uci set wireless.radio1.encryption='psk2'
+uci set wireless.radio1.key='WIFI8520.0'
 uci commit wireless
 wifi
 #修改密码（空格）
-sed -i '1i\root:$1$McPtUJaL$M47t/nUbjYrWraS5NgvOx0:18552:0:99999:7:::' /etc/shadow
+#sed -i '1i\root:$1$McPtUJaL$M47t/nUbjYrWraS5NgvOx0:18552:0:99999:7:::' /etc/shadow
 #默认配置操作详见： https://openwrt.org/docs/guide-developer/uci-defaults
 exit 0
