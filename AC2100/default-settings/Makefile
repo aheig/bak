@@ -17,7 +17,7 @@ define Package/default-settings         #设置包信息和依赖
 endef
 
 define Package/default-settings/description
-        LuCI support for Default Settings.
+        Language Support Packages.
 endef
 
 define Build/Compile
