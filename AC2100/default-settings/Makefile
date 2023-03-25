@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=default-settings              #定义包名
-PKG_VERSION:=1
-PKG_RELEASE:=1
+PKG_VERSION:=2
+PKG_RELEASE:=37
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
 
