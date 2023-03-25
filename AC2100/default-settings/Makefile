@@ -25,7 +25,7 @@ endef
 
 define Package/default-settings/install     #把文件 99-default-settings 写入 /etc/uci-defaults/ 目录下，如果是其他文件的话也可以用这种方法把特定文件写入固件中，比如证书
         $(INSTALL_DIR) $(1)/etc/uci-defaults
-        $(INSTALL_BIN) ./files/99-default-settings $(1)/etc/uci-defaults/99-default-settings
+        $(INSTALL_BIN) ./files/zzz-default-settings $(1)/etc/uci-defaults/99-default-settings
 endef
 
 $(eval $(call BuildPackage,default-settings))
