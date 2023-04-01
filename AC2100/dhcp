@@ -37,15 +37,16 @@ config odhcpd 'odhcpd'
         option loglevel '4'
 
 config host
-        option name 'wow'
+        option name 'WOW'
         option dns '1'
         option mac '04:42:1A:0E:CF:4A'
         option ip '10.0.0.4'
         option leasetime 'infinite'
         
 config host
-        option name 'wow'
+        option name 'Mate40Pro'
         option dns '1'
         option mac '00:94:EC:9A:2E:9B'
         option ip '10.0.0.5'
         option leasetime 'infinite'
+
