@@ -17,6 +17,10 @@ files.slack.com
 
 tooljet.slack.com
 
+www.warnermusic.com
+
+www.wmg.com
+
 
 
 ## 美国
