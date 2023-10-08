@@ -21,7 +21,11 @@ www.warnermusic.com
 
 www.wmg.com
 
+ssc.mtv.com
 
+www.mediaasia.com
+
+www.filmworkshop.net
 
 ## 美国
 
@@ -50,3 +54,5 @@ sina.slack.com
 slack.com
 
 app.slack.com
+
+www.mtv.com
