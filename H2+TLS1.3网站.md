@@ -27,6 +27,11 @@ www.mediaasia.com
 
 www.filmworkshop.net
 
+www.shutterstock.com
+
+
+
+
 ## 美国
 
 apps.apple.com
@@ -56,3 +61,7 @@ slack.com
 app.slack.com
 
 www.mtv.com
+
+pixabay.com
+
+
