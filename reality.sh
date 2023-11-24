@@ -103,6 +103,20 @@ function _is_tlsv1_3_h2() {
   fi
 }
 
+function _install_update() {
+  local package_name="$@"
+  case "$(_os)" in
+  centos)
+    if _exists "yum"; then
+      yum install -y ${package_name}
+    fi
+    ;;
+  ubuntu | debian)
+      apt install -y ${package_name}
+    ;;
+  esac
+}
+
 function _systemctl() {
   local cmd="$1"
   local server_name="$2"
