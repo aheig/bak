@@ -1,0 +1,149 @@
+
+#!/bin/sh
+
+uci set luci.main.lang=zh_cn
+uci set luci.languages.zh_cn='简体中文 (Chinese Simplified)'
+uci commit luci
+#配置网络
+#关闭DHCP
+uci set dhcp.lan.ignore=1
+uci commit dhcp
+/etc/init.d/dnsmasq restart
+uci commit network
+/etc/init.d/network restart
+
+#配置网口，拨号和管理地址
+uci set network.wan.proto='pppoe'
+uci set network.wan.username='15920019291@139.gd'
+uci set network.wan.password='019291'
+uci set network.lan.proto='static'
+uci set network.lan.ipaddr='10.0.0.1'
+uci set network.lan.netmask='255.255.255.0'
+uci set network.wan.dns='119.29.29.29'
+uci commit
+uci commit network
+ifup wan lan
+uci set system.@system[0].hostname='Hihoo'
+uci commit system 
+/etc/init.d/dnsmasq restart
+
+#配置WIFI
+#2G
+uci set wireless.@wifi-iface[0].encryption='psk2'
+uci set wireless.@wifi-iface[0].ssid='2G'
+uci set wireless.@wifi-iface[0].key='WIFI8520.0'
+uci commit wireless
+#5G
+uci set wireless.@wifi-iface[1].encryption='sae3'
+uci set wireless.@wifi-iface[1].ssid='50G'
+uci set wireless.@wifi-iface[1].key='WIFI8520.0'
+uci set wireless.@wifi-iface[1].disabled='0' 
+uci commit wireless
+/etc/init.d/network restart
+
+#调整时区和语言
+uci set luci.main.lang=zh_cn
+uci commit luci
+
+uci -q batch <<-EOF
+	set system.@system[0].timezone='CST-8'
+	set system.@system[0].zonename='Asia/Shanghai'
+
+	delete system.ntp.server
+	add_list system.ntp.server='ntp1.aliyun.com'
+	add_list system.ntp.server='ntp.tencent.com'
+	add_list system.ntp.server='ntp.ntsc.ac.cn'
+	add_list system.ntp.server='time.ustc.edu.cn'
+EOF
+uci commit system
+
+#更改密码为“空格”
+sed -i '1c root:$1$McPtUJaL$M47t/nUbjYrWraS5NgvOx0:18552:0:99999:7:::' /etc/shadow
+
+#更改SSH端口
+uci set dropbear.@dropbear[0].Interface='lan'
+uci set dropbear.@dropbear[0].Port='2333'
+uci commit dropbear
+/etc/init.d/dropbear reload
+
+# 终端自动登录
+uci set ttyd.@ttyd[0].command='/bin/login -f root'
+uci delete ttyd.@ttyd[0].interface
+uci commit ttyd
+
+#还原DHCP静态绑定地址
+cat <<EOF>>\etc\config\dhcp
+config host
+	option name 'WOW'
+	option dns '1'
+	option mac '04:42:1A:0E:CF:4A'
+	option ip '10.0.0.4'
+	option leasetime 'infinite'
+
+config host
+	option name 'Mate-40Pro'
+	option dns '1'
+	option mac '00:94:EC:9A:2E:9B'
+	option ip '10.0.0.5'
+	option leasetime 'infinite'
+
+config host
+	option name 'WLAN'
+	option dns '1'
+	option mac '38:FC:98:17:15:BF'
+	option ip '10.0.0.6'
+	option leasetime 'infinite'
+
+config host
+	option name 'Ubuntu'
+	option dns '1'
+	option mac '00:15:5D:B0:01:0B'
+	option ip '10.0.0.204'
+	option leasetime 'infinite'
+
+config host
+	option name 'iPad'
+	option dns '1'
+	option mac '62:44:3B:53:B0:5D'
+	option ip '10.0.0.7'
+	option leasetime 'infinite'
+
+config host
+	option name 'Debian'
+	option dns '1'
+	option mac '00:15:5d:b0:01:16'
+	option ip '10.0.0.8'
+	option leasetime 'infinite'
+
+config host
+	option name 'WIFI'
+	option dns '1'
+	option mac '3c:cd:57:a7:6a:8b'
+	option ip '172.16.0.0'
+	option leasetime 'infinite'
+
+config host
+	option name 'Hihoo-PC'
+	option dns '1'
+	option mac '00:0c:29:a0:cc:b1'
+	option leasetime 'infinite'
+	option ip '10.0.0.10'
+
+config dhcp 'WIFI'
+	option interface 'WIFI'
+	option start '2'
+	option limit '5'
+	option leasetime 'infinite'
+	option ra 'relay'
+	option dhcpv6 'relay'
+	option netmask '255.255.255.0'
+	list dhcp_option '6,172.16.0.1'
+	list dns 'fdd1:598c:9acd:10::1'
+
+config domain
+	option name 'ycy.aheig.cc'
+	option ip '149.104.25.127'
+	option comments '野草云'
+EOF
+
+exit 0
